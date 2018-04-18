@@ -15,6 +15,13 @@
             <version>4.11</version>
             <scope>test</scope>
         </dependency>
-    </dependencies>
 
+    <dependency>
+        <groupId>edu.princeton.cs</groupId>
+        <artifactId>algs4</artifactId>
+        <version>1.0</version>
+        <scope>system</scope>
+        <systemPath>${basedir}/lib/algs4.jar</systemPath>
+    </dependency>
+    </dependencies>
 </project>
