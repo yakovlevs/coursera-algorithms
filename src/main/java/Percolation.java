@@ -30,9 +30,7 @@ public class Percolation {
         if (i == 0) {
             union(top, s);
         }
-        if (i == n - 1) {
-            union(bottom, s);
-        }
+
         // union with upper site
         if ((i > 0) && isOpen(row - 1, col)) {
             union(s, parent[i - 1][j]);
@@ -50,6 +48,13 @@ public class Percolation {
             union(s, parent[i][j + 1]);
         }
         countOpenSites++;
+
+        for (int k = 1; k <= n; k++) {
+            if (isFull(n, k)) {
+                union(bottom, parent[n - 1][k - 1]);
+                break;
+            }
+        }
     }
 
     // is site (row, col) open?
