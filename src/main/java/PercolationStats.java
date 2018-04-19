@@ -2,7 +2,7 @@ import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.StdStats;
 
 public class PercolationStats {
-    private double[] a;
+    private final double[] a;
     private static final double CONF_95 = 1.96d;
 
     // perform trials independent experiments on an n-by-n grid
@@ -51,11 +51,6 @@ public class PercolationStats {
         double s = stddev();
         double avg = mean();
         return avg + (CONF_95 * s) / Math.sqrt(a.length);
-    }
-
-    // test client (described below)
-    public static void main(String[] args) {
-
     }
 
 }

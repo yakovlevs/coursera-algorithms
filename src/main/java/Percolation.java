@@ -1,9 +1,9 @@
 public class Percolation {
-    private int n = 0;
-    private Site[][] parent;
+    private final int n;
+    private final Site[][] parent;
     private int countOpenSites = 0;
-    private Site top = new Site();
-    private Site bottom = new Site();
+    private final Site top = new Site();
+    private final Site bottom = new Site();
 
     // create n-by-n parent, with all sites blocked
     public Percolation(int n) {
@@ -72,11 +72,6 @@ public class Percolation {
     // does the system percolate?
     public boolean percolates() {
         return connected(top, bottom);
-    }
-
-    // test client (optional)
-    public static void main(String[] args) {
-
     }
 
     private void checkIndices(int row, int col) {
