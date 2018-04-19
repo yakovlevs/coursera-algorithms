@@ -83,11 +83,24 @@ public class PercolationTest {
             int i = in.readInt();
             int j = in.readInt();
             p.open(i, j);
-            if (p.percolates()) {
-                System.out.println("-----------   " + p.numberOfOpenSites());
-            }
         }
         assertTrue(!p.isFull(18, 1));
+    }
+
+    @Test
+    public void fileWayne98Test() {
+        In in = new In("wayne98.txt");      // input file
+        int n = in.readInt();                     // n-by-n percolation system
+        Percolation p = new Percolation(n);
+        while (!in.isEmpty()) {
+            int i = in.readInt();
+            int j = in.readInt();
+            if ((i == 69) && (j == 9)) {
+                System.out.println();
+            }
+            p.open(i, j);
+        }
+        assertTrue(!p.isFull(69, 9));
     }
 
 }

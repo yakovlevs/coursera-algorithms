@@ -53,4 +53,8 @@ public class PercolationStats {
         return avg + (CONF_95 * s) / Math.sqrt(a.length);
     }
 
+    public static void main(String[] args) {
+
+    }
+
 }
