@@ -22,7 +22,7 @@ public class Percolation {
     // open site (row, col) if it is not open already
     public void open(int row, int col) {
         checkIndices(row, col);
-        if (isOpen(row,col)) return;
+        if (isOpen(row, col)) return;
         int i = row - 1;
         int j = col - 1;
         Site s = parent[i][j];
@@ -110,11 +110,11 @@ public class Percolation {
         return s;
     }
 
-    public boolean connected(Site p, Site q) {
+    private boolean connected(Site p, Site q) {
         return root(p) == root(q);
     }
 
-    public void union(Site p, Site q) {
+    private void union(Site p, Site q) {
         Site rootP = root(p);
         Site rootQ = root(q);
         if (rootP == rootQ) return;
@@ -129,7 +129,7 @@ public class Percolation {
         }
     }
 
-    class Site {
+    private class Site {
         private Site parent;
         private boolean open = false;
         private int size = 1;
