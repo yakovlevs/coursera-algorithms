@@ -75,7 +75,7 @@ public class Percolation {
     }
 
     private void checkIndices(int row, int col) {
-        if ((row > n) || (col > n)) {
+        if ((row > n) || (col > n) || (col <= 0) || (row <= 0)) {
             throw new IllegalArgumentException();
         }
     }
