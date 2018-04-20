@@ -1,33 +1,38 @@
+import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
 
 public class PercolationStatsTest {
+    PercolationStats ps;
 
     @Test
     public void mean() {
-        PercolationStats ps = new PercolationStats(200, 100);
-        System.out.println(ps.mean());
+        System.out.println("mean: " + ps.mean());
     }
 
     @Test
     public void stddev() {
-        PercolationStats ps = new PercolationStats(200, 100);
-        System.out.println(ps.stddev());
+        System.out.println("stddev: " + ps.stddev());
     }
 
     @Test
     public void confidenceLo() {
-        PercolationStats ps = new PercolationStats(200, 100);
-        System.out.println(ps.confidenceLo());
+        System.out.println("Lo: " + ps.confidenceLo());
     }
 
     @Test
     public void confidenceHi() {
+        System.out.println("Hi: " + ps.confidenceHi());
     }
 
-    @Test
+    @Before
     public void main() {
-        PercolationStats ps = new PercolationStats(20, 1000);
+        ps = new PercolationStats(200, 100);
+    }
+@Ignore
+    @Test
+    public void set2048() {
+        PercolationStats ps = new PercolationStats(2048, 1);
     }
 }

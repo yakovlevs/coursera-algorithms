@@ -1,4 +1,5 @@
 import edu.princeton.cs.algs4.In;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -75,6 +76,12 @@ public class PercolationTest {
     }
 
     @Test
+    public void percolatesConstructor() throws Exception {
+        Percolation p = new Percolation(5);
+    }
+
+
+    @Test
     public void fileInput20Test() {
         In in = new In("input20.txt");      // input file
         int n = in.readInt();         // n-by-n percolation system
@@ -86,6 +93,7 @@ public class PercolationTest {
         }
         assertTrue(!p.isFull(18, 1));
     }
+
 
     @Test
     public void fileWayne98Test() {

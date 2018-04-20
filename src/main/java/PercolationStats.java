@@ -22,21 +22,12 @@ public class PercolationStats {
 
     // sample mean of percolation threshold
     public double mean() {
-        double mean = 0.0d;
-        for (int i = 0; i < a.length; i++) {
-            mean += a[i];
-        }
-        return mean / a.length;
+        return StdStats.mean(a);
     }
 
     // sample standard deviation of percolation threshold
     public double stddev() {
-        double avg = StdStats.mean(a);
-        double stddev = 0.0d;
-        for (int i = 0; i < a.length; i++) {
-            stddev += Math.abs(a[i] - avg);
-        }
-        return stddev / (a.length - 1);
+        return StdStats.stddev(a);
     }
 
     // low  endpoint of 95% confidence interval
