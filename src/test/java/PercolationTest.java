@@ -80,7 +80,7 @@ public class PercolationTest {
         Percolation p = new Percolation(5);
     }
 
-
+    @Ignore
     @Test
     public void fileInput20Test() {
         In in = new In("input20.txt");      // input file
@@ -94,7 +94,7 @@ public class PercolationTest {
         assertTrue(!p.isFull(18, 1));
     }
 
-
+    @Ignore
     @Test
     public void fileWayne98Test() {
         In in = new In("wayne98.txt");      // input file

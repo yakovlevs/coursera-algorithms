@@ -1,8 +1,6 @@
-import edu.princeton.cs.algs4.StdRandom;
-import edu.princeton.cs.algs4.StdStats;
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
-import java.lang.reflect.Field;
+//import java.lang.reflect.Field;
 
 public class Percolation {
     private final int n;
@@ -90,6 +88,7 @@ public class Percolation {
 
     // is site (row, col) full?
     public boolean isFull(int row, int col) {
+        checkIndices(row, col);
         int siteCurrent = n * (row - 1) + col;
         return qu.connected(0, siteCurrent);
     }
