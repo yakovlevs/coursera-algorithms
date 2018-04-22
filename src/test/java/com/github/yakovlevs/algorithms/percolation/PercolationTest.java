@@ -1,6 +1,6 @@
-package com.github.yakovlevs.algorithms;
+package com.github.yakovlevs.algorithms.percolation;
 
-import com.github.yakovlevs.algorithms.Percolation;
+import com.github.yakovlevs.algorithms.percolation.Percolation;
 import edu.princeton.cs.algs4.In;
 import org.junit.Ignore;
 import org.junit.Test;

@@ -1,4 +1,4 @@
-package com.github.yakovlevs.algorithms;
+package com.github.yakovlevs.algorithms.percolation;
 
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 

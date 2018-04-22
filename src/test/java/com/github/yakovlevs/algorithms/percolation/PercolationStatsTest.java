@@ -1,6 +1,6 @@
-package com.github.yakovlevs.algorithms;
+package com.github.yakovlevs.algorithms.percolation;
 
-import com.github.yakovlevs.algorithms.PercolationStats;
+import com.github.yakovlevs.algorithms.percolation.PercolationStats;
 import org.junit.Before;
 import org.junit.Test;
 
