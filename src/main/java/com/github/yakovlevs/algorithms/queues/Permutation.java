@@ -5,11 +5,14 @@ import edu.princeton.cs.algs4.StdOut;
 
 public class Permutation {
   public static void main(String[] args) {
-    while (StdIn.hasNextLine()){
-      StdOut.print("Type a string: ");
+    RandomizedQueue<String> strings = new RandomizedQueue<>();
+    while (!StdIn.isEmpty()) {
       String s = StdIn.readString();
-      StdOut.println("Your string was: " + s);
-      StdOut.println();
+      if (s.equals("")) break;
+      strings.enqueue(s);
+    }
+    for (int i = 0; i < Integer.valueOf(args[0]); i++) {
+      System.out.println(strings.dequeue());
     }
   }
 }
