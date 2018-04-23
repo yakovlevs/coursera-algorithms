@@ -1,16 +1,14 @@
-package com.github.yakovlevs.algorithms.queues;
-
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class Deque<T> implements Iterable<T> {
+public class Deque<Item> implements Iterable<Item> {
 
   private Node first;
   private Node last;
   private int size;
 
   private class Node {
-    T item;
+    Item item;
     Node next;
     Node prev;
   }
@@ -26,11 +24,11 @@ public class Deque<T> implements Iterable<T> {
     return size;
   }
 
-  public void addFirst(T t) {
-    validate(t);
+  public void addFirst(Item item) {
+    validate(item);
     Node oldFirst = first;
     first = new Node();
-    first.item = t;
+    first.item = item;
     first.next = null;
     if (oldFirst == null) {
       first.prev = null;
@@ -42,11 +40,11 @@ public class Deque<T> implements Iterable<T> {
     size++;
   }
 
-  public void addLast(T t) {
-    validate(t);
+  public void addLast(Item item) {
+    validate(item);
     Node oldLast = last;
     last = new Node();
-    last.item = t;
+    last.item = item;
     last.prev = null;
     if (oldLast == null) {
       last.next = null;
@@ -58,17 +56,17 @@ public class Deque<T> implements Iterable<T> {
     size++;
   }
 
-  private void validate(T t) {
-    if (t == null) {
+  private void validate(Item item) {
+    if (item == null) {
       throw new IllegalArgumentException();
     }
   }
 
-  public T removeFirst() {
+  public Item removeFirst() {
     if (isEmpty()) {
       throw new NoSuchElementException();
     }
-    T item = first.item;
+    Item item = first.item;
     first = first.prev;
     if (first == null) {
       last = null;
@@ -77,11 +75,11 @@ public class Deque<T> implements Iterable<T> {
     return item;
   }
 
-  public T removeLast() {
+  public Item removeLast() {
     if (isEmpty()) {
       throw new NoSuchElementException();
     }
-    T item = last.item;
+    Item item = last.item;
     last = last.next;
     if (last == null) {
       first = null;
@@ -91,11 +89,11 @@ public class Deque<T> implements Iterable<T> {
   }
 
   @Override
-  public Iterator<T> iterator() {
+  public Iterator<Item> iterator() {
     return new ListIterator();
   }
 
-  private class ListIterator implements Iterator<T> {
+  private class ListIterator implements Iterator<Item> {
 
     @Override
     public boolean hasNext() {
@@ -103,7 +101,7 @@ public class Deque<T> implements Iterable<T> {
     }
 
     @Override
-    public T next() {
+    public Item next() {
       if (isEmpty()) {
         throw new NoSuchElementException();
       }

@@ -1,5 +1,3 @@
-package com.github.yakovlevs.algorithms.queues;
-
 import org.junit.Test;
 
 import java.util.Iterator;
@@ -88,6 +86,24 @@ public class RandomizedQueueTest {
     while (iterator.hasNext()) {
       System.out.println(iterator.next());
     }
+  }
+
+  @Test
+  public void nextTimeTest() {
+    RandomizedQueue<Integer> integers = new RandomizedQueue<>();
+    integers.enqueue(1);
+    integers.enqueue(2);
+    Iterator<Integer> iterator = integers.iterator();
+
+    long before = System.nanoTime();
+    iterator.next();
+    long after = System.nanoTime();
+    System.out.println(after - before);
+
+    before = System.nanoTime();
+    iterator.next();
+    after = System.nanoTime();
+    System.out.println(after - before);
   }
 }
 

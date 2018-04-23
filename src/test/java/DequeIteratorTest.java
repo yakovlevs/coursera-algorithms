@@ -1,5 +1,3 @@
-package com.github.yakovlevs.algorithms.queues;
-
 import org.junit.Test;
 
 import java.util.Iterator;

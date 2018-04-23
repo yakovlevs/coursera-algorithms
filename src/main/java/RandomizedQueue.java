@@ -1,17 +1,15 @@
-package com.github.yakovlevs.algorithms.queues;
-
 import edu.princeton.cs.algs4.StdRandom;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class RandomizedQueue<T> implements Iterable<T> {
+public class RandomizedQueue<Item> implements Iterable<Item> {
   private Node first;
   private Node last;
   private int size;
 
   private class Node {
-    T item;
+    Item item;
     Node next;
   }
 
@@ -26,13 +24,13 @@ public class RandomizedQueue<T> implements Iterable<T> {
     return size;
   }
 
-  public void enqueue(T t) {
-    if (t == null) {
+  public void enqueue(Item item) {
+    if (item == null) {
       throw new IllegalArgumentException();
     }
     Node oldLast = last;
     last = new Node();
-    last.item = t;
+    last.item = item;
     last.next = null;
     if (isEmpty()) {
       first = last;
@@ -42,38 +40,36 @@ public class RandomizedQueue<T> implements Iterable<T> {
     size++;
   }
 
-  public T dequeue() {
+  public Item dequeue() {
     if (isEmpty()) {
       throw new NoSuchElementException();
     }
-    StdRandom.setSeed(System.nanoTime());
     int i = StdRandom.uniform(size);
     Node node = first;
-    T t = null;
+    Item item = null;
     while (i > 1) {
       node = node.next;
       i--;
     }
     if (size == 1) {
-      t = node.item;
+      item = node.item;
       first = null;
       last = null;
     } else {
-      t = node.next.item;
+      item = node.next.item;
       node.next = node.next.next;
       if (node.next == null) {
         last = node;
       }
     }
     size--;
-    return t;
+    return item;
   }
 
-  public T sample() {
+  public Item sample() {
     if (isEmpty()) {
       throw new NoSuchElementException();
     }
-    StdRandom.setSeed(System.nanoTime());
     int i = StdRandom.uniform(size);
     Node node = first;
     while (i > 0) {
@@ -83,11 +79,11 @@ public class RandomizedQueue<T> implements Iterable<T> {
     return node.item;
   }
 
-  public Iterator<T> iterator() {
+  public Iterator<Item> iterator() {
     return new RandomizedIterator();
   }
 
-  private class RandomizedIterator implements Iterator<T> {
+  private class RandomizedIterator implements Iterator<Item> {
 
     @Override
     public boolean hasNext() {
@@ -95,7 +91,7 @@ public class RandomizedQueue<T> implements Iterable<T> {
     }
 
     @Override
-    public T next() {
+    public Item next() {
       if (isEmpty()) {
         throw new NoSuchElementException();
       }

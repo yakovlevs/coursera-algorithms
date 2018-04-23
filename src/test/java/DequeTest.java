@@ -1,8 +1,8 @@
-package com.github.yakovlevs.algorithms.queues;
-
 import org.ehcache.sizeof.SizeOf;
 import org.junit.Ignore;
 import org.junit.Test;
+
+import java.util.Iterator;
 
 import static org.junit.Assert.*;
 
@@ -10,12 +10,9 @@ public class DequeTest {
 
   @Test
   public void isEmpty() {
-    Deque<Integer> integers = new Deque<>();
-    assertTrue(integers.isEmpty());
-    integers.addLast(1);
-    assertTrue(!integers.isEmpty());
-    integers.removeFirst();
-    assertTrue(integers.isEmpty());
+    Deque<Integer> deque = new Deque<Integer>();
+    deque.addFirst(1);
+    deque.removeFirst();
   }
 
   @Test
@@ -64,13 +61,14 @@ public class DequeTest {
   public void removeLast() {
     Deque<String> strings = new Deque<>();
     strings.addLast("A");
-    strings.addLast("B");
+    strings.addFirst("B");
     strings.addLast("C");
-    strings.addLast("D");
-    strings.removeLast();
-    strings.removeLast();
-    strings.removeLast();
-    strings.removeLast();
+    strings.addFirst("D");
+
+    System.out.println(strings.removeLast());
+    System.out.println(strings.removeFirst());
+    System.out.println(strings.removeLast());
+    System.out.println(strings.removeFirst());
     assertTrue(strings.isEmpty());
   }
 
@@ -92,6 +90,17 @@ public class DequeTest {
     }
 
     System.out.println(message + " " + shallowSize / n);
+  }
+
+  @Test
+  public void iterator() {
+    Deque<Integer> integers = new Deque<>();
+    integers.addFirst(0);
+    integers.addFirst(1);
+    Iterator<Integer> iterator = integers.iterator();
+    Iterator<Integer> iterator1 = integers.iterator();
+    System.out.println(iterator.next());
+    System.out.println(iterator1.next());
   }
 
   @Test
