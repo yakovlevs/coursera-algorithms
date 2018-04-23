@@ -22,7 +22,6 @@ public class Deque<T> implements Iterable<T> {
     return size == 0;
   }
 
-
   public int size() {
     return size;
   }
@@ -42,7 +41,6 @@ public class Deque<T> implements Iterable<T> {
     }
     size++;
   }
-
 
   public void addLast(T t) {
     validate(t);
@@ -90,10 +88,6 @@ public class Deque<T> implements Iterable<T> {
     }
     size--;
     return item;
-  }
-
-  private void remove(Node n) {
-
   }
 
   @Override

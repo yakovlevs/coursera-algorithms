@@ -1,6 +1,7 @@
 package com.github.yakovlevs.algorithms.queues;
 
 import org.ehcache.sizeof.SizeOf;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -9,7 +10,7 @@ public class DequeTest {
 
   @Test
   public void isEmpty() {
-    Deque<Integer> integers = new Deque<Integer>();
+    Deque<Integer> integers = new Deque<>();
     assertTrue(integers.isEmpty());
     integers.addLast(1);
     assertTrue(!integers.isEmpty());
@@ -103,6 +104,7 @@ public class DequeTest {
     memory("1kk:", 1_000_000);
   }
 
+  @Ignore
   @Test
   public void memory10kk() {
     memory("10kk:", 10_000_000);
