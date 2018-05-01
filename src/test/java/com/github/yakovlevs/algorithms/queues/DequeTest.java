@@ -1,3 +1,6 @@
+package com.github.yakovlevs.algorithms.queues;
+
+import com.github.yakovlevs.algorithms.queues.Deque;
 import org.ehcache.sizeof.SizeOf;
 import org.junit.Ignore;
 import org.junit.Test;

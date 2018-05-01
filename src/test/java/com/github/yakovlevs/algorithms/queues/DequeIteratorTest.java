@@ -1,3 +1,6 @@
+package com.github.yakovlevs.algorithms.queues;
+
+import com.github.yakovlevs.algorithms.queues.Deque;
 import org.junit.Test;
 
 import java.util.Iterator;
