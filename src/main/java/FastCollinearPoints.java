@@ -3,37 +3,13 @@ import java.util.Arrays;
 
 public class FastCollinearPoints {
   private final ArrayList<LineSegment> lineSegments;
+  private final Point[] points;
 
   // finds all line segments containing 4 or more points
   public FastCollinearPoints(Point[] points) {
     validate(points);
+    this.points = points;
     lineSegments = new ArrayList<>(points.length);
-    Point[] aux = new Point[points.length];
-    System.arraycopy(points, 0, aux, 0, points.length);
-    for (int i = 0; i < points.length; i++) {
-      Point first = null;
-      Point last = null;
-      int count = 0;
-      Arrays.sort(aux, points[i].slopeOrder());
-      // sort(points, aux, 0, points.length-1);
-      // System.out.println(Arrays.toString(aux));
-      ArrayList<Point> pointsList = new ArrayList<>();
-      pointsList.add(points[i]);
-      for (int j = 0; j < aux.length - 1; j++) {
-        System.out.print(points[i].slopeTo(aux[j]) + "  ");
-        if (points[i].slopeTo(aux[j]) == points[i].slopeTo(aux[j + 1])) {
-         pointsList.add(aux[j]);
-         last = aux[j+1];
-        }
-      }
-      pointsList.add(last);
-      if (pointsList.size() > 3) {
-        System.out.println(pointsList);
-
-        //lineSegments.add(new LineSegment(first, last));
-      }
-      System.out.println();
-    }
   }
 
   // the number of line segments
@@ -55,34 +31,63 @@ public class FastCollinearPoints {
 
   // the line segments
   public LineSegment[] segments() {
+    Point[] aux = new Point[points.length];
+    ArrayList<Point> lsp = new ArrayList<>();
+    System.arraycopy(points, 0, aux, 0, points.length);
+    for (int i = 0; i < points.length; i++) {
+      Arrays.sort(aux, points[i].slopeOrder());
+
+      Point first = aux[0];
+      Point last = aux[0];
+      int count = 0;
+
+      for (int j = 0; j < aux.length - 1; j++) {
+        // System.out.print(points[i].slopeTo(aux[j]) + "  ");
+        if (points[i].slopeTo(aux[j]) == points[i].slopeTo(aux[j + 1])) {
+
+          first = first.compareTo(aux[j]) < 0 ? first : aux[j];
+          first = first.compareTo(aux[j + 1]) < 0 ? first : aux[j + 1];
+
+          last = last.compareTo(aux[j]) > 0 ? last : aux[j];
+          last = last.compareTo(aux[j + 1]) > 0 ? last : aux[j + 1];
+
+          count++;
+        } else if (first != last) {
+          if (count >= 2) {
+            break;
+          } else {
+            first = aux[0];
+            last = aux[0];
+            count = 0;
+          }
+        }
+      }
+      if (first != null && last != null && count >= 2) {
+        lsp.add(first);
+        lsp.add(last);
+      }
+      // System.out.println();
+      // System.out.println("-----------" + lsp);
+    }
+
+
+    for (int i = 0; i < lsp.size() - 1; i += 2) {
+      for (int j = 0; j < lsp.size() - 1; j += 2) {
+        if ((i != j) && (lsp.get(i) == lsp.get(j)) && (lsp.get(i + 1) == lsp.get(j + 1))) {
+          lsp.remove(j);
+          lsp.add(j, null);
+          lsp.remove(j + 1);
+          lsp.add(j + 1, null);
+        }
+      }
+    }
+    //System.out.println(lsp);
+    for (int i = 0; i < lsp.size() - 1; i += 2) {
+      if (lsp.get(i) != null && lsp.get(i + 1) != null) {
+        lineSegments.add(new LineSegment(lsp.get(i), lsp.get(i + 1)));
+      }
+    }
     return lineSegments.toArray(new LineSegment[lineSegments.size()]);
   }
 
- /* private static void sort(Comparable[] a, Comparable[] aux, int lo, int hi) {
-    if (hi <= lo) return;
-    int mid = lo + (hi - lo) / 2;
-    sort(a, aux, lo, mid);
-    sort(a, aux, mid + 1, hi);
-    merge(a, aux, lo, mid, hi);
-  }
-
-  private static void merge(Comparable[] a, Comparable[] aux, int lo, int mid, int hi) {
-
-    for (int k = lo; k <= hi; k++) {
-      aux[k] = a[k];
-    }
-
-    int i = lo;
-    int j = mid + 1;
-    for (int k = lo; k <= hi; k++) {
-      if (i > mid) a[k] = aux[j++];
-      else if (j > hi) a[k] = aux[i++];
-      else if (less(aux[j], aux[i])) a[k] = aux[j++];
-      else a[k] = aux[i++];
-    }
-  }
-
-  private static boolean less(Comparable a1, Comparable a2) {
-    return a1.compareTo(a2) < 0;
-  } */
 }
